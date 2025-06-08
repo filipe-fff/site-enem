@@ -3,7 +3,7 @@ import { Component } from "../../core/component.js";
 export class AppComponent extends Component {
 
     constructor() {
-        super("../main/app/app.component.html", "../main/app/app.component.css");
+        super("../src/app/app.component.html", "../src/app/app.component.css");
     }
 }
 

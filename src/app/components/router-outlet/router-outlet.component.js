@@ -6,20 +6,23 @@ export class RouterOutletComponent extends HTMLElement {
         this.attachShadow({ mode: "open" });
 
         this.handleLocation = this.handleLocation.bind(this);
-        this.route = this.route.bind(this);
+        this.route = this.routerLink.bind(this);
     }
 
     connectedCallback() {
-        window.onpopstate = this.handleLocation;
-        window.route = this.route;
+        window.onpopstate = this.handleLocation.bind(this);
+        window.route = this.routerLink.bind(this);
 
         this.handleLocation();
     }
 
-    route(event) {
+    routerLink(event) {
         event = event || window.event;
+
+        if (!event.target.hasAttribute("routerLink")) return;
+
         event.preventDefault();
-        window.history.pushState({}, "", event.target.href);
+        window.history.pushState({}, "", event.target.getAttribute("routerLink"));
         this.handleLocation();
     }
 
@@ -33,6 +36,10 @@ export class RouterOutletComponent extends HTMLElement {
     handleLocation() {
         const path = window.location.pathname;
         const route = this.routes[path];
+
+        if(!route) return;
+
+        this.shadowRoot.innerHTML = "";
         const element = document.createElement(route);
         this.shadowRoot.appendChild(element);
     }

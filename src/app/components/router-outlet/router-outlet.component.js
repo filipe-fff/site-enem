@@ -1,4 +1,4 @@
-// import { MathComponent } from "../../pages/math.component";
+import "../../pages/math.component.js";
 
 export class RouterOutletComponent extends HTMLElement {
     constructor() {
@@ -7,21 +7,20 @@ export class RouterOutletComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        window.addEventListener("popstate", () => {
-            console.log("popstate");
-            this.render();
+        window.addEventListener("routerLink", (event) => {
+            this.render(event.detail);
         });
-        this.render();
+        this.render("/");
     }
 
-    render = () => {
-        const route = window.location.pathname;
+    render = (route) => {
+        this.shadowRoot.innerHTML = "";
         const routes = {
-            "/": "",
-            "/math": "<app-math></app-math>ok"
+            "/": "div",
+            "/math": "app-math"
         };
-        console.log("route.endsWith()", route.endsWith());
-        this.shadowRoot.innerHTML = routes[route.endsWith()];
+        const element = document.createElement(routes[route] || "div");
+        this.shadowRoot.appendChild(element);
     }
 }
 

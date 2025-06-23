@@ -6,4 +6,15 @@ export class MathComponent extends Component {
     }
 }
 
+// export class MathComponent extends HTMLElement {
+//     constructor() {
+//         super();
+//         this.attachShadow({ mode: 'open' });
+//     }
+
+//     connectedCallback() {
+//         this.shadowRoot.innerHTML = "Olá, Mundo!";
+//     }
+// }
+
 customElements.define("app-math", MathComponent);

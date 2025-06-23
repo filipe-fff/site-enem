@@ -4,22 +4,36 @@ export class RouterOutletComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
+
+        this.handleLocation = this.handleLocation.bind(this);
+        this.route = this.route.bind(this);
     }
 
     connectedCallback() {
-        window.addEventListener("routerLink", (event) => {
-            this.render(event.detail);
-        });
-        this.render("/");
+        window.onpopstate = this.handleLocation;
+        window.route = this.route;
+
+        this.handleLocation();
     }
 
-    render = (route) => {
-        this.shadowRoot.innerHTML = "";
-        const routes = {
+    route(event) {
+        event = event || window.event;
+        event.preventDefault();
+        window.history.pushState({}, "", event.target.href);
+        this.handleLocation();
+    }
+
+    get routes () {
+        return {
             "/": "div",
             "/math": "app-math"
         };
-        const element = document.createElement(routes[route] || "div");
+    }
+
+    handleLocation() {
+        const path = window.location.pathname;
+        const route = this.routes[path];
+        const element = document.createElement(route);
         this.shadowRoot.appendChild(element);
     }
 }

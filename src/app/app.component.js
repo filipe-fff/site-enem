@@ -1,5 +1,5 @@
 import { Component } from "../../core/component.js";
-import "/components/router-outlet/router-outlet.component.js";
+import "components/router-outlet/router-outlet.component.js";
 
 export class AppComponent extends Component {
 

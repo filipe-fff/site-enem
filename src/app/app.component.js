@@ -1,26 +1,15 @@
-// import { Component } from "../../core/component.js";
-// import "/components/router-outlet/router-outlet.component.js";
+import { Component } from "../../core/component.js";
+import "/components/router-outlet/router-outlet.component.js";
 
-// export class AppComponent extends Component {
+export class AppComponent extends Component {
 
-//     constructor() {
-//         super("../src/app/app.component.html", "../src/app/app.component.css");
-//     }
-
-//     connectedCallback() {
-//         super.connectedCallback().then(() => {
-//         });
-//     }
-// }
-
-export class AppComponent extends HTMLElement {
     constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
+        super("../src/app/app.component.html", "../src/app/app.component.css");
     }
 
     connectedCallback() {
-        this.shadowRoot.innerHTML = "Olá, Mundo!";
+        super.connectedCallback().then(() => {
+        });
     }
 }
 

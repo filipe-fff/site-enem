@@ -1,4 +1,8 @@
-import "../../pages/math.component.js";
+import "../../pages/math/math.component.js";
+import "../../pages/portuguese/portuguese.component.js";
+import "../../pages/physical/physical.component.js";
+import "../../pages/chemical/chemical.component.js";
+import "../../pages/biology/biology.component.js";
 
 export class RouterOutletComponent extends HTMLElement {
     constructor() {
@@ -29,7 +33,11 @@ export class RouterOutletComponent extends HTMLElement {
     get routes () {
         return {
             "/": "div",
-            "/math": "app-math"
+            "/math": "app-math",
+            "/portuguese": "app-portuguese",
+            "/physical": "app-physical",
+            "/chemical": "app-chemical",
+            "/biology": "app-biology"
         };
     }
 
@@ -37,9 +45,10 @@ export class RouterOutletComponent extends HTMLElement {
         const path = window.location.pathname;
         const route = this.routes[path];
 
-        if(!route) return;
+        console.log("rota =>", route);
 
         this.shadowRoot.innerHTML = "";
+
         const element = document.createElement(route);
         this.shadowRoot.appendChild(element);
     }

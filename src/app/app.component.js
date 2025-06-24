@@ -20,6 +20,7 @@ export class AppComponent extends HTMLElement {
 
     connectedCallback() {
         // this.shadowRoot.innerHTML = "Olá, Mundo!";
+        this.innerHTML = "Olá, Mundo!";
     }
 }
 

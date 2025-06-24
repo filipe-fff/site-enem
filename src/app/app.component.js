@@ -15,12 +15,12 @@
 
 export class AppComponent extends HTMLElement {
     constructor() {
+        super();
         this.attachShadow({ mode: "open" });
     }
 
     connectedCallback() {
-        // this.shadowRoot.innerHTML = "Olá, Mundo!";
-        this.innerHTML = "Olá, Mundo!";
+        this.shadowRoot.innerHTML = "Olá, Mundo!";
     }
 }
 

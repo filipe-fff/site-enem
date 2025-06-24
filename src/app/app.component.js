@@ -1,5 +1,5 @@
-import { Component } from "../../core/component.js";
-import "/components/router-outlet/router-outlet.component.js";
+// import { Component } from "../../core/component.js";
+// import "/components/router-outlet/router-outlet.component.js";
 
 // export class AppComponent extends Component {
 
@@ -19,7 +19,7 @@ export class AppComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        this.shadowRoot.innerHTML = "Olá, Mundo!";
+        // this.shadowRoot.innerHTML = "Olá, Mundo!";
     }
 }
 
